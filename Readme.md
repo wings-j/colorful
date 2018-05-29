@@ -2,7 +2,7 @@
     <h1>Colorful</h1>
     <h4>
         <p>取色工具</p>
-        <p>链接：<a href='http://skywingjiang.gitee.io/colorful' target='_blank'>Colorful</a></p>
+        <p>链接：<a href='https://wingsj0.github.io/Colorful' target='_blank'>Colorful</a></p>
     </h4>
 </header>
 <br/>
