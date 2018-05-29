@@ -23,7 +23,7 @@ class Root extends React.Component
     {
         return <div className='root'>
             <div className='links'>
-                <a href='https://gitee.com/skywingjiang/Colorful.git' target='_blank'>源码</a>
+                <a href='https://github.com/WingsJ0/Colorful.git' target='_blank'>源码</a>
             </div>
             <Picker ref='picker'/>
             <div ref='saveButton' className='saveButton'>
