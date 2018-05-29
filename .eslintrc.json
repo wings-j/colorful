@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node":true
+    },
+    "parserOptions":
+    {
+        "ecmaFeatures": 
+        {
+            "jsx":true,
+            "impliedStrict": true    
+        },
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "extends": "eslint:recommended",
+    "rules": 
+    {
+        "linebreak-style": ["warn","windows"],
+        "quotes": ["warn","single"],
+        "semi": ["warn","always"],
+        "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+        "no-var":["warn"],
+        "no-console":[0]
+    }
+}

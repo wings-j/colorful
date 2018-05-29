@@ -1,0 +1,189 @@
+@import './Global.less';
+
+.picker
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    width:100%;
+    height:66.6%;
+    border:1px solid @BorderGrey;
+    border-top-left-radius: 36px;
+    border-top-right-radius: 36px;
+
+    >.wheel
+    {
+        height:80%;
+    }
+
+    >.panel
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        width:50%;
+
+        >div
+        {
+            margin:1.8rem 0;
+        }
+
+        >.panel_color
+        {
+            width:70%;
+            height:4rem;
+            border:1px solid @BorderGrey;
+        }
+
+        >.panel_hex
+        {
+            font-size:2.5rem;
+            text-align: center;
+            font-family: Consolas;
+            text-transform: uppercase;
+            -moz-user-select:text; /*火狐*/
+            -webkit-user-select:text; /*webkit浏览器*/
+            -ms-user-select:text; /*IE10*/
+            -khtml-user-select:text; /*早期浏览器*/
+            user-select:text; 
+        }
+
+        >.panel_inputGroup
+        {
+            display: flex;
+            position: relative;
+            width:100%;
+            border-bottom:1px solid @BorderGrey*1.1;
+            padding:1rem 0;
+            margin:0;
+
+            >.panel_input
+            {
+                display: flex; 
+                position: relative;
+                width:30%;
+
+                >label
+                {
+                    width:30%;
+                    margin:0 5% 0 15%; 
+                    font-size:2rem;
+                    text-align: center;
+                }
+
+                >input
+                {
+                    position: relative;
+                    width:50%;
+                    text-align: center;
+                    border:none;
+                    border-bottom:1px solid @BorderGrey/2;
+
+                    &:focus
+                    {
+                        border:none;
+                        outline: none;
+                        border-bottom:1px solid @InteractBlue*1.7 !important;
+                    }
+                    &:hover
+                    {
+                        border-bottom:1px solid @InteractBlue;
+                    }
+                }
+            }
+        }
+    }
+
+    >.menu
+    {
+        position: absolute;
+        left:100%;
+        bottom:0%;
+        margin-left:8px;
+
+        .link
+        {
+            cursor: pointer;
+        }
+
+        >.menu_item
+        {
+            position: relative;
+            width: 80px;
+            height:36px;
+            border:1px solid lightgrey;
+            margin:6px 0;
+            box-sizing: border-box;
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+            font-size:1.8rem;
+            line-height: 36px;
+            text-align: center;
+
+            &:hover
+            {
+                border:1px solid @InteractBlue;
+
+                >div
+                {
+                    display:block;
+                    border:1px solid @InteractBlue;
+                }
+            }
+
+            >div
+            {
+                display: none;
+                position: absolute;
+                left: calc(100% - 12px);
+                top:-1px;
+                width:inherit;
+                border:1px solid lightgrey;
+                border-top-right-radius: 12px;
+                border-bottom-right-radius: 12px;
+                border-bottom-left-radius: 12px;
+                background:white;
+
+                &::after
+                {
+                    content:'';
+                    display: block;
+                    position: absolute;
+                    left:-4px;
+                    top:0;
+                    width:8px;
+                    height:34px;
+                    background:white;
+                }
+
+                >div
+                {
+                    height:36px;
+
+                    &:hover
+                    {
+                        color:@InteractBlue
+                    }
+                }
+            }
+        }
+    }
+
+    >.message
+    {
+        position: absolute;
+        left:50%;
+        bottom:100%;
+        transform: translateX(-50%);
+        width:30rem;
+        height:6rem;
+        background-color:hsl(136.26,100%,78%);
+        font-size:1.6rem;
+        line-height: 6rem;
+        text-align: center;
+        opacity: 0;
+        transition:opacity 0.5s;
+    }
+}
