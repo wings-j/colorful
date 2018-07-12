@@ -1,44 +1,53 @@
-const webpack=require('webpack');
+const Path=require('path');
 
 module.exports = 
 {
-    entry:  __dirname + '/app/index.js',        //入口文件位置
+    mode:'production',
+    entry:
+    {
+        Index:__dirname+'/src/Index.jsx'   
+    },
     output: 
     {
-        path: __dirname + '/dist-production',      //输出文件位置
-        filename: 'bundle.js'       //输出文件名
+        path: __dirname+'/dist/production',
+        filename:'[name].js'
     },
     module: 
     {
         rules: 
         [
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/,
+                test:/\.(js|jsx)$/,
+                loader:'babel-loader',
+                exclude:/node_modules/,
                 query:
                 {
                     presets:['react','es2015']
                 }
             },
             {
-                test: /\.(css|less)$/,
-                use: ['style-loader','css-loader','less-loader']
+                test:/\.(css|less)$/,
+                use:['style-loader','css-loader','less-loader']
             },
             {
                 test:/\.png$/,
-                loader:'file-loader',
+                loader:'url-loader',
                 query:
                 {
                     name:'./image/[name].[ext]',
-                    limit:0
+                    limit:1000
                 }
             }
         ]
     },
-    plugins: 
-    [
-        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')}),
-        new webpack.optimize.UglifyJsPlugin()
-    ]
+    resolve: 
+    {
+        alias: 
+        {
+            Component:Path.resolve(__dirname,'src/component/'),
+            Public:Path.resolve(__dirname,'src/public/'),
+            Resource:Path.resolve(__dirname,'resource'),
+            Global:Path.resolve(__dirname,'src/global')
+        }
+    }
 };

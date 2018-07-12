@@ -1,8 +1,15 @@
 /**
+ * @name RGB、HSL、HSV颜色和转换
+ * @type 
+ */
+
+/*接口*/
+
+/**
  * @name RGB构造函数
- * @param {int} r 红色分量，0~255
- * @param {int} g 绿色分量，0~255
- * @param {int} b 蓝色分量，0~255
+ * @param {Number} r 红色分量，0~255
+ * @param {Number} g 绿色分量，0~255
+ * @param {Number} b 蓝色分量，0~255
 */
 function RGB(r,g,b)
 {
@@ -21,22 +28,22 @@ RGB.prototype=
     */
     toHSL:function()
     {
-        var r = this.r / 255, g = this.g / 255, b = this.b / 255;
+        let r = this.r / 255, g = this.g / 255, b = this.b / 255;
         if (r < 0 || r > 1 || g < 0 || g > 1 || b < 0 || b > 1)
             return null;
 
-        var max = r;
+        let max = r;
         if (g > max)
             max = g;
         if (b > max)
             max = b;
-        var min = r;
+        let min = r;
         if (g < min)
             min = g;
         if (b < min)
             min = b;
 
-        var h, s, l;
+        let h, s, l;
 
         if (max == min)
             h = 0;
@@ -67,22 +74,22 @@ RGB.prototype=
 */
     toHSV:function()
     {
-        var r = this.r / 255, g = this.g / 255, b = this.b / 255;
+        let r = this.r / 255, g = this.g / 255, b = this.b / 255;
         if (r < 0 || r > 1 || g < 0 || g > 1 || b < 0 || b > 1)
             return null;
 
-        var max = r;
+        let max = r;
         if (g > max)
             max = g;
         if (b > max)
             max = b;
-        var min = r;
+        let min = r;
         if (g < min)
             min = g;
         if (b < min)
             min = b;
 
-        var h, s, v;
+        let h, s, v;
 
         if (max == min)
             h = 0;
@@ -104,13 +111,13 @@ RGB.prototype=
 
         return new HSV(h,s,v);
     },
-}
+};
 
 /**
  * @name HSL构造函数
- * @param {float} h 色相分量，0~360
- * @param {float} s 饱和度分量，0~1
- * @param {float} l 亮度分量，0~1
+ * @param {Number} h 色相分量，0~360
+ * @param {Number} s 饱和度分量，0~1
+ * @param {Number} l 亮度分量，0~1
 */
 function HSL(h,s,l)
 {
@@ -131,19 +138,19 @@ HSL.prototype=
         if (this.h < 0 || this.h >= 360 || this.s < 0 || this.s > 1 || this.l < 0 || this.l > 1)
             return null;
 
-        var temp1;
+        let temp1;
         if (this.l < 0.5)
             temp1 = this.l * (1 + this.s);
         else
             temp1 = this.l + this.s - (this.l * this.s);
-        var temp2 = 2 * this.l - temp1;
-        var hNormlized = this.h / 360;
-        var tempRgb = new Array(3);
+        let temp2 = 2 * this.l - temp1;
+        let hNormlized = this.h / 360;
+        let tempRgb = new Array(3);
         tempRgb[0] = hNormlized + 1 / 3;
         tempRgb[1] = hNormlized;
         tempRgb[2] = hNormlized - 1 / 3;
 
-        for (var i = 0; i < 3; i++)
+        for (let i = 0; i < 3; i++)
         {
             if (tempRgb[i] < 0)
                 tempRgb[i] += 1;
@@ -151,8 +158,8 @@ HSL.prototype=
                 tempRgb[i] -= 1;
         }
 
-        var rgb = new Array(3);
-        for (var i = 0; i < 3; i++)
+        let rgb = new Array(3);
+        for (let i = 0; i < 3; i++)
         {
             if (tempRgb[i] < 1 / 6)
                 rgb[i] = temp2 + ((temp1 - temp2) * 6 * tempRgb[i]);
@@ -177,7 +184,7 @@ HSL.prototype=
         if (this.h < 0 || this.h >= 360 || this.s < 0 || this.s > 1 || this.l < 0 || this.l > 1)
             return null;
 
-        var hHsv, sHsv, v;
+        let hHsv, sHsv, v;
 
         hHsv = this.h;
 
@@ -199,13 +206,13 @@ HSL.prototype=
 
         return new HSV(hHsv,sHsv,v);
     }
-}
+};
 
 /**
  * @name HSV构造函数
- * @param {float} h 色相分量，0~360
- * @param {float} s 饱和度分量，0~1
- * @param {float} v 明度分量，0~1
+ * @param {Number} h 色相分量，0~360
+ * @param {Number} s 饱和度分量，0~1
+ * @param {Number} v 明度分量，0~1
 */
 function HSV(h,s,v)
 {
@@ -226,13 +233,13 @@ HSV.prototype=
         if (this.h < 0 || this.h >= 360 || this.s < 0 || this.s > 1 || this.v < 0 || this.v > 1)
             return null;
 
-        var tempH = Math.floor(this.h / 60);
-        var temp1 = this.h / 60 - tempH;
-        var temp2 = this.v * (1 - this.s);
-        var temp3 = this.v * (1 - temp1 * this.s);
-        var temp4 = this.v * (1 - (1 - temp1) * this.s);
+        let tempH = Math.floor(this.h / 60);
+        let temp1 = this.h / 60 - tempH;
+        let temp2 = this.v * (1 - this.s);
+        let temp3 = this.v * (1 - temp1 * this.s);
+        let temp4 = this.v * (1 - (1 - temp1) * this.s);
 
-        var rgb;
+        let rgb;
         switch (tempH)
         {
             case 0:
@@ -268,7 +275,7 @@ HSV.prototype=
         if (this.h < 0 || this.h >= 360 || this.s < 0 || this.s > 1 || this.v < 0 || this.v > 1)
             return null;
 
-        var hHsl, sHsl, l;
+        let hHsl, sHsl, l;
 
         hHsl = this.h;
 
@@ -295,6 +302,8 @@ HSV.prototype=
 
         return new HSL(hHsl,sHsl,l);
     }
-}
+};
+
+/*构造*/
 
 export {RGB,HSL,HSV};
