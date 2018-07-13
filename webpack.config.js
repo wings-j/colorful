@@ -5,7 +5,8 @@ module.exports =
     mode:'development',
     entry:
     {
-        Index:__dirname+'/src/Index.jsx'
+        Index:__dirname+'/src/Index.jsx',
+        ServiceWorker:__dirname+'/src/ServiceWorker.js'
     },
     output: 
     {

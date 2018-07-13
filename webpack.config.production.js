@@ -5,11 +5,12 @@ module.exports =
     mode:'production',
     entry:
     {
-        Index:__dirname+'/src/Index.jsx'   
+        Index:__dirname+'/src/Index.jsx',
+        ServiceWorker:__dirname+'/src/ServiceWorker.js'
     },
     output: 
     {
-        path: __dirname+'/dist/production',
+        path:__dirname+'/dist/production',
         filename:'[name].js'
     },
     module: 
@@ -20,7 +21,7 @@ module.exports =
                 test:/\.(js|jsx)$/,
                 loader:'babel-loader',
                 exclude:/node_modules/,
-                query:
+                options:
                 {
                     presets:['react','es2015']
                 }
@@ -32,7 +33,7 @@ module.exports =
             {
                 test:/\.png$/,
                 loader:'url-loader',
-                query:
+                options:
                 {
                     name:'./image/[name].[ext]',
                     limit:1000

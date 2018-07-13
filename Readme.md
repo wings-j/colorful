@@ -13,13 +13,13 @@
 
 ## 依赖技术
 
-- HTML，CSS，Javascript
-- Canvas
-- React
+- HTML、CSS、Javascript
+- Canvas、Service Worker
+- React、Less
 - Webpack
 
 ## 浏览器兼容性
 
-chrome:66.
-FireFox:60.
-Edge:16.
+- chrome:66.
+- FireFox:60.
+- Edge:16.

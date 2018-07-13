@@ -43,3 +43,11 @@ document.addEventListener('DOMContentLoaded',function handler_document_DOMConten
 
     ReactDOM.render(Root,document.getElementById('container'));
 });
+
+window.addEventListener('load',()=>
+{
+    if('serviceWorker' in navigator)        //Service Worker注册，为了不影响页面加载所以在页面加载完后开始
+        navigator.serviceWorker.register('./ServiceWorker.js',{scope:'./'});
+});
+
+

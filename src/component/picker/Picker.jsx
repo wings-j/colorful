@@ -99,7 +99,7 @@ const ColorWheel=class extends React.Component
         this.temp.wheelImage.onload=()=>{this.update();};
         this.temp.maskImage.onload=()=>{this.update();};
         this.temp.wheelImage.src='./image/ColorWheel.png';
-        this.temp.maskImage.src='./image/Mask.png';
+        this.temp.maskImage.src='./image/ColorMask.png';
 
         this.selectColor=ThrottleLock(this.selectColor,30,this);
         this.handler_onMouseDown=this.handler_onMouseDown.bind(this);
@@ -718,7 +718,7 @@ import ThrottleLock from 'Public/ThrottleLock.js';
 import PadCharStart from 'Public/PadCharStart.js';
 import {RGB,HSL,HSV} from 'Public/Color.js';
 import 'Resource/image/ColorWheel.png';
-import 'Resource/image/Mask.png';
+import 'Resource/image/ColorMask.png';
 
 color=new HSV(0,1,1);
 component=<Picker/>;
