@@ -6,7 +6,6 @@ module.exports =
     entry:
     {
         Index:__dirname+'/src/Index.jsx',
-        ServiceWorker:__dirname+'/src/ServiceWorker.js'
     },
     output: 
     {
