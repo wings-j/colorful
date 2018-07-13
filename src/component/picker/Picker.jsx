@@ -92,6 +92,7 @@ const ColorWheel=class extends React.Component
         this.context=null;
         this.temp=
         {
+            colorString:null,
             wheelImage:new Image(),
             maskImage:new Image()
         };
@@ -239,27 +240,33 @@ const ColorWheel=class extends React.Component
      */
     update()
     {
-        let context=this.context;
-        context.clearRect(0,0,this.layout.width,this.layout.height);
+        let colorString=JSON.stringify(color);
+        if(this.temp.colorString!==colorString)     //阻止重复刷新
+        {
+            let context=this.context;
+            context.clearRect(0,0,this.layout.width,this.layout.height);
+    
+            context.beginPath();        //色轮和掩膜
+            context.rect(this.layout.maskX+0.5,this.layout.maskY+0.5,this.layout.maskWidth-0.5,this.layout.maskHeight-0.5);     //0.5：修正 
+            let hsl=color.toHSL();
+            context.fillStyle=`hsl(${hsl.h},100%,50%)`;
+            context.fill();
+            context.drawImage(this.temp.wheelImage,this.layout.wheelX,this.layout.wheelY,this.layout.wheelWidth,this.layout.wheelHeight);
+            context.drawImage(this.temp.maskImage,this.layout.maskX,this.layout.maskY,this.layout.maskWidth,this.layout.maskHeight);
+    
+            let x=color.s*this.layout.maskWidth+this.layout.maskX;
+            let y=(1-color.v)*this.layout.maskHeight+this.layout.maskY;
+            this.drawCircle(x,y);
+    
+            let angle=color.h/360*(Math.PI*2)-Math.PI/2;     //-Math.PI/2：偏差修正
+            let right=polarToRight(this.layout.wheelRadius+4,angle);       //+4：偏差修正
+            x=right.x+this.layout.wheelWidth/2;
+            y=right.y+this.layout.wheelHeight/2;
+    
+            this.drawCircle(x,y);
+        }
 
-        context.beginPath();        //色轮和掩膜
-        context.rect(this.layout.maskX+0.5,this.layout.maskY+0.5,this.layout.maskWidth-0.5,this.layout.maskHeight-0.5);     //0.5：修正 
-        let hsl=color.toHSL();
-        context.fillStyle=`hsl(${hsl.h},100%,50%)`;
-        context.fill();
-        context.drawImage(this.temp.wheelImage,this.layout.wheelX,this.layout.wheelY,this.layout.wheelWidth,this.layout.wheelHeight);
-        context.drawImage(this.temp.maskImage,this.layout.maskX,this.layout.maskY,this.layout.maskWidth,this.layout.maskHeight);
-
-        let x=color.s*this.layout.maskWidth+this.layout.maskX;
-        let y=(1-color.v)*this.layout.maskHeight+this.layout.maskY;
-        this.drawCircle(x,y);
-
-        let angle=color.h/360*(Math.PI*2)-Math.PI/2;     //-Math.PI/2：偏差修正
-        let right=polarToRight(this.layout.wheelRadius+4,angle);       //+4：偏差修正
-        x=right.x+this.layout.wheelWidth/2;
-        y=right.y+this.layout.wheelHeight/2;
-
-        this.drawCircle(x,y);
+        this.temp.colorString=colorString;
     }
 };
 /**
@@ -719,6 +726,11 @@ import PadCharStart from 'Public/PadCharStart.js';
 import {RGB,HSL,HSV} from 'Public/Color.js';
 import 'Resource/image/ColorWheel.png';
 import 'Resource/image/ColorMask.png';
+
+// HSV.prototype.toString=function()
+// {
+//     return ``;
+// };
 
 color=new HSV(0,1,1);
 component=<Picker/>;
