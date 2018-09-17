@@ -97,8 +97,15 @@ const ColorWheel=class extends React.Component
             maskImage:new Image()
         };
 
-        this.temp.wheelImage.onload=()=>{this.update();};
-        this.temp.maskImage.onload=()=>{this.update();};
+        this.temp.wheelImage.onload=()=>
+        {
+            this.context.drawImage(this.temp.wheelImage,this.layout.wheelX,this.layout.wheelY,this.layout.wheelWidth,this.layout.wheelHeight);
+
+        };
+        this.temp.maskImage.onload=()=>
+        {
+            this.context.drawImage(this.temp.maskImage,this.layout.maskX,this.layout.maskY,this.layout.maskWidth,this.layout.maskHeight);
+        };
         this.temp.wheelImage.src='./image/ColorWheel.png';
         this.temp.maskImage.src='./image/ColorMask.png';
 
@@ -131,6 +138,9 @@ const ColorWheel=class extends React.Component
         canvas.height=this.layout.height;
         this.context=canvas.getContext('2d');
         this.update();
+
+        // this.context.drawImage(this.temp.wheelImage,this.layout.wheelX,this.layout.wheelY,this.layout.wheelWidth,this.layout.wheelHeight);
+        // this.context.drawImage(this.temp.maskImage,this.layout.maskX,this.layout.maskY,this.layout.maskWidth,this.layout.maskHeight);
 
         colorSelector.push(this);
     }
