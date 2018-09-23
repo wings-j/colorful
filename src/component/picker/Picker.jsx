@@ -139,9 +139,6 @@ const ColorWheel=class extends React.Component
         this.context=canvas.getContext('2d');
         this.update();
 
-        // this.context.drawImage(this.temp.wheelImage,this.layout.wheelX,this.layout.wheelY,this.layout.wheelWidth,this.layout.wheelHeight);
-        // this.context.drawImage(this.temp.maskImage,this.layout.maskX,this.layout.maskY,this.layout.maskWidth,this.layout.maskHeight);
-
         colorSelector.push(this);
     }
     shouldComponentUpdate()

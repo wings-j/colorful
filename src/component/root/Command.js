@@ -27,7 +27,7 @@ const Command=
     rgb()
     {
         let color=getColor().toRGB();
-        let css=`rgb(${color.r},${color.g},${color.b})`;
+        let css=`rgb(${color.r.toFixed(2)},${color.g.toFixed(2)},${color.b.toFixed(2)})`;
         Clipboard.copy(css);
 
         return {message:'CSS rgb 语句已复制到剪贴板'};
@@ -40,7 +40,7 @@ const Command=
     hsl()
     {
         let color=getColor().toHSL();
-        let css=`hsl(${color.h},${color.s*100}%,${color.l*100}%)`;
+        let css=`hsl(${color.h.toFixed(2)},${(color.s*100).toFixed(2)}%,${(color.l*100).toFixed(2)}%)`;
         Clipboard.copy(css);
 
         return {message:'CSS hsl 语句已复制到剪贴板'};
