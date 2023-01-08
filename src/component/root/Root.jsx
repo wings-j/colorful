@@ -46,8 +46,8 @@ const Menu=class extends React.Component
      * @name 运行命令
      * @type Function
      * @see Menu
-     * @param {String} name 命令 
-     * @param {Object} data 数据对象 
+     * @param {String} name 命令
+     * @param {Object} data 数据对象
      */
     runCommand(name,data)
     {
@@ -87,7 +87,7 @@ const Message=class extends React.Component
      * @name 显示
      * @type Function
      * @see Message
-     * @param {String} text 文本 
+     * @param {String} text 文本
      */
     display(text)
     {
@@ -98,7 +98,7 @@ const Message=class extends React.Component
 };
 /**
  * @name 根容器
- * @type Class 
+ * @type Class
  */
 const Root=class extends React.Component
 {
@@ -123,7 +123,7 @@ const Root=class extends React.Component
     {
         return <div className='root'>
             <div className='links'>
-                <a href='https://github.com/WingsJ0/Colorful.git' target='_blank'>源码</a>
+                <a href='https://github.com/wings-j/colorful.git' target='_blank'>源码</a>
             </div>
             <Menu/>
             <Message ref={message}/>
@@ -181,12 +181,12 @@ let broadcast=null;
 
 /*构造*/
 
-import './Root.less';
-import Command from './Command.js';
-import React from 'react';
+import Picker, { getColor, setColor } from 'Component/picker/Picker.jsx';
+import Saver, { storeColor } from 'Component/saver/Saver.jsx';
 import Broadcast from 'Public/Broadcast.js';
-import Picker,{setColor,getColor} from 'Component/picker/Picker.jsx';
-import Saver,{storeColor} from 'Component/saver/Saver.jsx';
+import React from 'react';
+import Command from './Command.js';
+import './Root.less';
 
 message=React.createRef();
 component=<Root/>;
@@ -195,4 +195,4 @@ broadcast=new Broadcast(['LoadColor','displayMessage']);
 broadcast.addListener('LoadColor',broadcast_loadColor);
 
 export default component;
-export {broadcast};
+export { broadcast };
